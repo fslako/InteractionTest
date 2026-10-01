@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dm0gri3glpr1a"]
+
+[ext_resource type="Script" uid="uid://coe33gfifd558" path="res://HoverableObject.cs" id="1_2wby2"]
+[ext_resource type="Shader" uid="uid://cp3roxaelmnaw" path="res://outline.gdshader" id="2_ab6iy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i42b4"]
+albedo_color = Color(0.64705884, 0.3647059, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rkki4"]
+material = SubResource("StandardMaterial3D_i42b4")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7if1s"]
+
+[node name="Block" type="RigidBody3D" unique_id=313726327]
+script = ExtResource("1_2wby2")
+OutlineShader = ExtResource("2_ab6iy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1962376181]
+mesh = SubResource("SphereMesh_rkki4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2131100206]
+shape = SubResource("SphereShape3D_7if1s")

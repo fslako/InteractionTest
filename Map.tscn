@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cxsr6fvqwepne"]
+
+[ext_resource type="PackedScene" uid="uid://do5x5bdr810hb" path="res://MrBeans.tscn" id="1_gfjgm"]
+[ext_resource type="PackedScene" uid="uid://dm0gri3glpr1a" path="res://Block.tscn" id="2_3vi7k"]
+[ext_resource type="Script" uid="uid://blwq7ebbs0jli" path="res://OutlineSystem.cs" id="3_3h1ab"]
+
+[node name="Node3D" type="Node3D" unique_id=741011875]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=964264172]
+transform = Transform3D(1, 0, 0, 0, 0.68620795, 0.7274054, 0, -0.7274054, 0.68620795, 2.147311, 12.5934305, 14.675413)
+
+[node name="Map" type="Node3D" parent="." unique_id=1983739253]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=1406918650]
+transform = Transform3D(4.219642, 0, 0, 0, 0.09878665, 0, 0, 0, 2.0650117, 2.0151534, 0, 0.63960624)
+use_collision = true
+size = Vector3(5.338501, 1, 9.49762)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=60355858]
+transform = Transform3D(1.0191073, 0, 0, 0, 1.5687907, 0, 0, 0, 2.0650117, -8.701326, 2.3548589, 0.6675553)
+use_collision = true
+size = Vector3(1, 2.9432373, 9.484894)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=878661319]
+transform = Transform3D(1.0191073, 0, 0, 0, 1.5687907, 0, 0, 0, 2.0650117, 12.75408, 2.3548589, 0.6675553)
+use_collision = true
+size = Vector3(1, 2.9432373, 9.484894)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map" unique_id=408601891]
+transform = Transform3D(-3.7271253e-08, 0, 2.4681015, 0, 1.5687907, 0, -0.85266685, 0, -1.0788414e-07, 2.5330355, 2.3548589, -8.704269)
+use_collision = true
+size = Vector3(1, 2.9432373, 8.6909485)
+
+[node name="Interactable objects" type="Node3D" parent="." unique_id=1198163811]
+
+[node name="Block" parent="Interactable objects" unique_id=1927647245 instance=ExtResource("2_3vi7k")]
+transform = Transform3D(0.8177162, 0, 0.5756216, 0, 1, 0, -0.5756216, 0, 0.8177162, -3.232965, 0.57826185, -2.637125)
+
+[node name="MrBeans" parent="." unique_id=1555826724 instance=ExtResource("1_gfjgm")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=632577680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9340994, 5.8229246, -0.24094343)
+light_energy = 8.196
+shadow_enabled = true
+omni_range = 25.223375
+
+[node name="Outline system" type="Node3D" parent="." unique_id=2140579327 node_paths=PackedStringArray("Camera")]
+script = ExtResource("3_3h1ab")
+Camera = NodePath("../Camera3D")
+
+[node name="Block" parent="." unique_id=313726327 instance=ExtResource("2_3vi7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7571898, 0.54939365, -3.05787)
