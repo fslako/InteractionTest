@@ -13,12 +13,14 @@ public partial class HoverableObject : RigidBody3D
 
         if (OutlineShader == null)
         {
-            GD.PrintErr("OutlineShader has not been assigned.");
+            GD.PrintErr($"No OutlineShader assigned to {Name}.");
             return;
         }
 
-        _outlineMaterial = new ShaderMaterial();
-        _outlineMaterial.Shader = OutlineShader;
+        _outlineMaterial = new ShaderMaterial
+        {
+            Shader = OutlineShader
+        };
     }
 
     public void SetHovered(bool hovered)
@@ -26,13 +28,12 @@ public partial class HoverableObject : RigidBody3D
         if (_mesh == null)
             return;
 
-        if (hovered)
-        {
-            _mesh.MaterialOverlay = _outlineMaterial;
-        }
-        else
-        {
-            _mesh.MaterialOverlay = null;
-        }
+        _mesh.MaterialOverlay =
+            hovered ? _outlineMaterial : null;
+    }
+
+    public virtual void Interact(Player player)
+    {
+        GD.Print($"Interacted with: {Name}");
     }
 }

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://do5x5bdr810hb"]
 
 [ext_resource type="Script" uid="uid://bvwg1pc62gnds" path="res://Player.cs" id="1_7faxa"]
+[ext_resource type="Script" uid="uid://co6u8vgvgunw8" path="res://InteractionArea.cs" id="2_q60kl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ablkk"]
 albedo_color = Color(0.91227055, 4.7168137e-06, 6.738305e-07, 1)
@@ -21,10 +22,11 @@ radius = 2.0
 
 [node name="MrBeans" type="Node3D" unique_id=1555826724]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=751222854 node_paths=PackedStringArray("Reach")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=751222854 node_paths=PackedStringArray("Reach", "InteractionArea") groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0030963, 0)
 script = ExtResource("1_7faxa")
 Reach = NodePath("../Area3D")
+InteractionArea = NodePath("../Area3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=110734051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.003096342, 0)
@@ -38,6 +40,7 @@ transform = Transform3D(0.53186375, 0, 0, 0, 0.25159428, 0, 0, 0, 0.62637365, 0,
 mesh = SubResource("BoxMesh_m0j13")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=470405839]
+script = ExtResource("2_q60kl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1183088730]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
