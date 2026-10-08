@@ -33,8 +33,14 @@ size = Vector3(1, 2.9432373, 8.6909485)
 
 [node name="Interactable objects" type="Node3D" parent="." unique_id=1198163811]
 
+[node name="Block2" parent="Interactable objects" unique_id=313726327 instance=ExtResource("2_3vi7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7571898, 0.54939365, -3.05787)
+
 [node name="Block" parent="Interactable objects" unique_id=1927647245 instance=ExtResource("2_3vi7k")]
 transform = Transform3D(0.8177162, 0, 0.5756216, 0, 1, 0, -0.5756216, 0, 0.8177162, -3.232965, 0.57826185, -2.637125)
+
+[node name="Block3" parent="Interactable objects" unique_id=1064598058 instance=ExtResource("2_3vi7k")]
+transform = Transform3D(0.8177162, 0, 0.5756216, 0, 1, 0, -0.5756216, 0, 0.8177162, -2.0250282, 0.57826185, -2.637125)
 
 [node name="MrBeans" parent="." unique_id=1555826724 instance=ExtResource("1_gfjgm")]
 
@@ -47,6 +53,3 @@ omni_range = 25.223375
 [node name="Outline system" type="Node3D" parent="." unique_id=2140579327 node_paths=PackedStringArray("Camera")]
 script = ExtResource("3_3h1ab")
 Camera = NodePath("../Camera3D")
-
-[node name="Block" parent="." unique_id=313726327 instance=ExtResource("2_3vi7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7571898, 0.54939365, -3.05787)

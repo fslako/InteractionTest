@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 public partial class Player : CharacterBody3D
@@ -16,16 +17,25 @@ public partial class Player : CharacterBody3D
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseButton &&
+        if (interactable && Area3d.interactableObjects.Contains(OutlineSystem._hoveredObject))
+        {
+            if (@event is InputEventMouseButton mouseButton &&
             mouseButton.ButtonIndex == MouseButton.Left &&
             mouseButton.Pressed)
-        {
-            if (interactable)
             {
-
+                GD.Print("pick up object");
             }
-            SetMovementTarget(mouseButton.Position);
         }
+        else
+        {
+            if (@event is InputEventMouseButton mouseButton &&
+            mouseButton.ButtonIndex == MouseButton.Left &&
+            mouseButton.Pressed)
+            {
+                SetMovementTarget(mouseButton.Position);
+            }
+        }
+        
     }
 
     private void SetMovementTarget(Vector2 mousePosition)
@@ -63,8 +73,6 @@ public partial class Player : CharacterBody3D
             return;
         }
 
-
-
     }
 
     public override void _PhysicsProcess(double delta)
@@ -96,4 +104,6 @@ public partial class Player : CharacterBody3D
             LookAt(GlobalPosition - direction, Vector3.Up);
         }
     }
+
+    
 }

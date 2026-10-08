@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_i42b4")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7if1s"]
 
-[node name="Block" type="RigidBody3D" unique_id=313726327]
+[node name="Block" type="RigidBody3D" unique_id=313726327 groups=["Interactable"]]
 script = ExtResource("1_2wby2")
 OutlineShader = ExtResource("2_ab6iy")
 
@@ -19,4 +19,9 @@ OutlineShader = ExtResource("2_ab6iy")
 mesh = SubResource("SphereMesh_rkki4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2131100206]
+shape = SubResource("SphereShape3D_7if1s")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=725584046]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=186207810]
 shape = SubResource("SphereShape3D_7if1s")

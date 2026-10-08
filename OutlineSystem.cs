@@ -4,13 +4,15 @@ public partial class OutlineSystem : Node3D
 {
     [Export] public Camera3D Camera;
 
-    private HoverableObject _hoveredObject;
+    public static HoverableObject _hoveredObject;
 
 
     public override void _Process(double delta)
     {
         if (Camera == null)
+        {
             return;
+        }
 
         Vector2 mousePosition = GetViewport().GetMousePosition();
 
@@ -40,13 +42,17 @@ public partial class OutlineSystem : Node3D
         {
             // Remove outline from previous object
             if (_hoveredObject != null)
-				Player.interactable = false;
-                _hoveredObject.SetHovered(false);
+            {
+                Player.interactable = false;
+                _hoveredObject.SetHovered(false);   
+            }
 
             // Add outline to new object
             if (newObject != null)
-				Player.interactable = true;
+            {
+                Player.interactable = true;
                 newObject.SetHovered(true);
+            }
 
             _hoveredObject = newObject;
         }
