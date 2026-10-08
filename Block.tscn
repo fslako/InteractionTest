@@ -25,3 +25,6 @@ shape = SubResource("SphereShape3D_7if1s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=186207810]
 shape = SubResource("SphereShape3D_7if1s")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=2086162149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001188159, 1.3035036, 1.4510843)

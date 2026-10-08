@@ -2,9 +2,14 @@ using Godot;
 
 public partial class OutlineSystem : Node3D
 {
-    [Export] public Camera3D Camera;
+    public Camera3D Camera;
 
     public static HoverableObject _hoveredObject;
+
+    public override void _Ready()
+    {
+        Camera = GetViewport().GetCamera3D();
+    }
 
 
     public override void _Process(double delta)

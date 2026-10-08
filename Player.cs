@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 
@@ -5,6 +6,7 @@ public partial class Player : CharacterBody3D
 {
     [Export] public float MoveSpeed = 5.0f;
     [Export] Area3D Reach;
+    [Export] Camera3D SecondaryCamera;
 
     private Vector3 targetPosition;
     private bool hasTarget = false;
@@ -23,20 +25,27 @@ public partial class Player : CharacterBody3D
             mouseButton.ButtonIndex == MouseButton.Left &&
             mouseButton.Pressed)
             {
-                GD.Print("pick up object");
+                SecondaryCamera.MakeCurrent();
+
+                // GD.Print("pick up object");
             }
         }
         else
         {
+            
+
             if (@event is InputEventMouseButton mouseButton &&
             mouseButton.ButtonIndex == MouseButton.Left &&
             mouseButton.Pressed)
             {
                 SetMovementTarget(mouseButton.Position);
+                SecondaryCamera.ClearCurrent();
             }
         }
         
     }
+
+
 
     private void SetMovementTarget(Vector2 mousePosition)
     {
