@@ -33,16 +33,10 @@ size = Vector3(1, 2.9432373, 8.6909485)
 
 [node name="Interactable objects" type="Node3D" parent="." unique_id=1198163811]
 
-[node name="Block2" parent="Interactable objects" unique_id=313726327 instance=ExtResource("2_3vi7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7571893, 0.54939365, -3.05787)
-
 [node name="Block" parent="Interactable objects" unique_id=1927647245 instance=ExtResource("2_3vi7k")]
 transform = Transform3D(0.8177162, 0, 0.5756216, 0, 1, 0, -0.5756216, 0, 0.8177162, -3.232965, 0.57826185, -2.637125)
 
 [node name="MrBeans" parent="." unique_id=1555826724 instance=ExtResource("1_gfjgm")]
-
-[node name="CharacterBody3D" parent="MrBeans" index="0" unique_id=751222854 node_paths=PackedStringArray("OutlineSystem")]
-OutlineSystem = NodePath("../../Outline system")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=632577680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9340994, 5.8229246, -0.24094343)
@@ -54,4 +48,5 @@ omni_range = 25.223375
 script = ExtResource("3_3h1ab")
 Camera = NodePath("../Camera3D")
 
-[editable path="MrBeans"]
+[node name="Block" parent="." unique_id=313726327 instance=ExtResource("2_3vi7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7571898, 0.54939365, -3.05787)

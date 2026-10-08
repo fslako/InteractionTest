@@ -6,76 +6,49 @@ public partial class OutlineSystem : Node3D
 
     private HoverableObject _hoveredObject;
 
-    public HoverableObject HoveredObject => _hoveredObject;
 
     public override void _Process(double delta)
     {
         if (Camera == null)
             return;
 
-        HoverableObject newObject = GetObjectUnderMouse();
-
-        if (newObject == _hoveredObject)
-            return;
-
-        // Remove outline from old object
-        if (_hoveredObject != null)
-        {
-            _hoveredObject.SetHovered(false);
-        }
-
-        // Add outline to new object
-        if (newObject != null)
-        {
-            newObject.SetHovered(true);
-        }
-
-        _hoveredObject = newObject;
-    }
-
-    private HoverableObject GetObjectUnderMouse()
-    {
         Vector2 mousePosition = GetViewport().GetMousePosition();
 
-        Vector3 rayOrigin =
-            Camera.ProjectRayOrigin(mousePosition);
+        Vector3 rayOrigin = Camera.ProjectRayOrigin(mousePosition);
+        Vector3 rayDirection = Camera.ProjectRayNormal(mousePosition);
 
-        Vector3 rayDirection =
-            Camera.ProjectRayNormal(mousePosition);
-
-        Vector3 rayEnd =
-            rayOrigin + rayDirection * 1000.0f;
+        Vector3 rayEnd = rayOrigin + rayDirection * 1000.0f;
 
         PhysicsRayQueryParameters3D query =
-            PhysicsRayQueryParameters3D.Create(
-                rayOrigin,
-                rayEnd
-            );
+            PhysicsRayQueryParameters3D.Create(rayOrigin, rayEnd);
 
-        query.CollideWithBodies = true;
+        var result = GetWorld3D().DirectSpaceState.IntersectRay(query);
 
-        var result =
-            GetWorld3D().DirectSpaceState.IntersectRay(query);
+        HoverableObject newObject = null;
 
-        if (result.Count == 0)
-            return null;
-
-        Node collider =
-            result["collider"].AsGodotObject() as Node;
-
-        return FindHoverableParent(collider);
-    }
-
-    private HoverableObject FindHoverableParent(Node node)
-    {
-        while (node != null)
+        if (result.Count > 0)
         {
-            if (node is HoverableObject hoverable)
-                return hoverable;
+            Node collider = result["collider"].AsGodotObject() as Node;
 
-            node = node.GetParent();
+            if (collider is HoverableObject hoverable)
+            {
+                newObject = hoverable;
+            }
         }
 
-        return null;
+        if (newObject != _hoveredObject)
+        {
+            // Remove outline from previous object
+            if (_hoveredObject != null)
+				Player.interactable = false;
+                _hoveredObject.SetHovered(false);
+
+            // Add outline to new object
+            if (newObject != null)
+				Player.interactable = true;
+                newObject.SetHovered(true);
+
+            _hoveredObject = newObject;
+        }
     }
 }
