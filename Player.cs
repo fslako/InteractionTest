@@ -25,6 +25,8 @@ public partial class Player : CharacterBody3D
             mouseButton.ButtonIndex == MouseButton.Left &&
             mouseButton.Pressed)
             {
+                SecondaryCamera.Position = OutlineSystem._hoveredObject.Position + new Vector3(0,1,2);
+                SecondaryCamera.RotationDegrees = new Vector3(-30,0,0);
                 SecondaryCamera.MakeCurrent();
 
                 // GD.Print("pick up object");
