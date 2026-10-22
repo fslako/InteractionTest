@@ -6,6 +6,9 @@
 
 [node name="Node3D" type="Node3D" unique_id=741011875]
 
+[node name="Marker3D" type="Marker3D" parent="." unique_id=990418687]
+transform = Transform3D(1, 0, 0, 0, 0.68620795, 0.7274054, 0, -0.7274054, 0.68620795, 2.147311, 12.5934305, 14.675413)
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=964264172]
 transform = Transform3D(1, 0, 0, 0, 0.68620795, 0.7274054, 0, -0.7274054, 0.68620795, 2.147311, 12.5934305, 14.675413)
 
@@ -44,8 +47,9 @@ transform = Transform3D(0.8177162, 0, 0.5756216, 0, 1, 0, -0.5756216, 0, 0.81771
 
 [node name="MrBeans" parent="." unique_id=1555826724 instance=ExtResource("1_gfjgm")]
 
-[node name="CharacterBody3D" parent="MrBeans" index="0" unique_id=751222854 node_paths=PackedStringArray("SecondaryCamera")]
-SecondaryCamera = NodePath("../../Camera3D2")
+[node name="CharacterBody3D" parent="MrBeans" index="0" unique_id=751222854 node_paths=PackedStringArray("Camera", "CameraMarker")]
+Camera = NodePath("../../Camera3D")
+CameraMarker = NodePath("../../Marker3D")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=632577680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9340994, 5.8229246, -0.24094343)
@@ -53,11 +57,7 @@ light_energy = 8.196
 shadow_enabled = true
 omni_range = 25.223375
 
-[node name="Outline system" type="Node3D" parent="." unique_id=2140579327 node_paths=PackedStringArray("Camera")]
+[node name="Outline system" type="Node3D" parent="." unique_id=2140579327]
 script = ExtResource("3_3h1ab")
-Camera = NodePath("../Camera3D")
-
-[node name="Camera3D2" type="Camera3D" parent="." unique_id=1826873579]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975934, 2.656859)
 
 [editable path="MrBeans"]

@@ -6,7 +6,8 @@ public partial class Player : CharacterBody3D
 {
     [Export] public float MoveSpeed = 5.0f;
     [Export] Area3D Reach;
-    [Export] Camera3D SecondaryCamera;
+    [Export] Camera3D Camera;
+    [Export] Marker3D CameraMarker;
 
     private Vector3 targetPosition;
     private bool hasTarget = false;
@@ -25,11 +26,13 @@ public partial class Player : CharacterBody3D
             mouseButton.ButtonIndex == MouseButton.Left &&
             mouseButton.Pressed)
             {
-                SecondaryCamera.Position = OutlineSystem._hoveredObject.Position + new Vector3(0,1,2);
-                SecondaryCamera.RotationDegrees = new Vector3(-30,0,0);
-                SecondaryCamera.MakeCurrent();
-
-                // GD.Print("pick up object");
+                // Camera.Position = OutlineSystem._hoveredObject.Position + new Vector3(0,1,2);
+                // Camera.RotationDegrees = new Vector3(-30,0,0);
+                var tween = CreateTween();
+                tween.TweenProperty(Camera, "position", OutlineSystem._hoveredObject.Position + new Vector3(0,1,2), 0.5);
+                tween.SetParallel();
+                tween.TweenProperty(Camera, "rotation_degrees", new Vector3(-30,0,0), 0.5);
+                Visible = false;
             }
         }
         else
@@ -41,7 +44,13 @@ public partial class Player : CharacterBody3D
             mouseButton.Pressed)
             {
                 SetMovementTarget(mouseButton.Position);
-                SecondaryCamera.ClearCurrent();
+                // Camera.Position = CameraMarker.Position;
+                // Camera.RotationDegrees = CameraMarker.RotationDegrees;
+                var tween = CreateTween();
+                tween.TweenProperty(Camera, "position", CameraMarker.Position, 0.5);
+                tween.SetParallel();
+                tween.TweenProperty(Camera, "rotation_degrees", CameraMarker.RotationDegrees, 0.5);
+                Visible = true;
             }
         }
         
